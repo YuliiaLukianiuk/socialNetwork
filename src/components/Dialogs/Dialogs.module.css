@@ -8,12 +8,11 @@ grid-template-columns: 2fr 10fr;
 .dialogsItems .active {
   color: rgb(226, 43, 43);
 }
-.message {
+.messages {
   padding: 10px;
 
 }
 
 .messages .message {
-  padding: 10px;
-
+color: aqua;
 }
