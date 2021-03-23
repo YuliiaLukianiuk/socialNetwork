@@ -1,13 +1,13 @@
-import { renderEntireTree } from "../render";
-
+let renderEntireTree = () => {
+  console.log("state  changed");
+};
 let state = {
   profilePage: {
     posts: [
       { id: 1, message: "Hi, how are you?", likesCount: "25" },
       { id: 2, message: "It's my first post", likesCount: "2" },
     ],
-    newPostText: 'Yuliia Hello'
-  
+    newPostText: "Yuliia Hello",
   },
   messagePage: {
     dialogData: [
@@ -26,25 +26,27 @@ let state = {
       { id: 4, message: "Hi" },
       { id: 5, message: "How are you?" },
       { id: 6, message: "yo" },
-    ]
-  
-  }
-}
+    ],
+  },
+};
 
 export let addPost = () => {
   let newPost = {
     id: 5,
     message: state.profilePage.newPostText,
-    likesCount: 0
+    likesCount: 0,
   };
   state.profilePage.posts.push(newPost);
-  state.profilePage.newPostText = ''
-renderEntireTree(state);
-}
+  state.profilePage.newPostText = "";
+  renderEntireTree(state);
+};
 
 export let updateNewPostText = (newText) => {
   state.profilePage.newPostText = newText;
-renderEntireTree(state);
-}
+  renderEntireTree(state);
+};
 
+export const subscribe = (observer) => {
+  renderEntireTree = observer;
+};
 export default state;
