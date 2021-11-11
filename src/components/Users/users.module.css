@@ -1,0 +1,13 @@
+.userPhoto {
+    width: 200px;
+    height: 200px
+}
+.selectedPage {
+    font-weight:bold ;
+}
+
+.pageNumber:hover {
+    background-color: black;
+    color: white;
+    border-radius: 20%;
+}
