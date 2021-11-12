@@ -4,6 +4,7 @@ const SET_USERS = "SET_USERS";
 const SET_CURRENT_PAGE = "SET_CURRENT_PAGE";
 const SET_TOTAL_USERS_COUNT = "SET_TOTAL_USERS_COUNT";
 const TOGGLE_IS_FETCHING = "TOGGLE_IS_FETCHING";
+const TOGGLE_IS_FOLLOWING = "TOGGLE_IS_FOLLOWING";
 
 
 let initialState = {
@@ -11,7 +12,8 @@ let initialState = {
     pageSize: 10,
     totalUsersCount: 0,
     currentPage: 1,
-    isFetching: true
+    isFetching: true,
+    followingInProgress: [],
 
 
 };
@@ -25,7 +27,7 @@ const usersReducer = (state = initialState, action) => {
                 ...state,
                 users: state.users.map(u => {
                     if (u.id === action.userId) {
-                        return {...u, follow: true}
+                        return {...u, followed: true}
                     }
                     return u;
                 })
@@ -35,7 +37,7 @@ const usersReducer = (state = initialState, action) => {
                 ...state,
                 users: state.users.map(u => {
                     if (u.id === action.userId) {
-                        return {...u, follow: false}
+                        return {...u, followed: false}
                     }
                     return u;
                 })
@@ -53,6 +55,13 @@ const usersReducer = (state = initialState, action) => {
         case TOGGLE_IS_FETCHING: {
                     return {...state, isFetching: action.isFetching}
                 }
+        case TOGGLE_IS_FOLLOWING: {
+            return {...state,
+                followingInProgress: action.isFetching
+                  ? [...state.followingInProgress,  action.userId]
+                  : state.followingInProgress.filter(id => id != action.userId)
+            }
+        }
 
 
         default:
@@ -83,6 +92,11 @@ export const setUsersTotalCount = (totalUsersCount) => ({
 export const toggleIsFetching = (isFetching) => ({
     type: TOGGLE_IS_FETCHING,
     isFetching,
+});
+export const toggleFollowingProgress = (isFetching, userId) => ({
+    type: TOGGLE_IS_FOLLOWING,
+    isFetching,
+    userId
 });
 
 
