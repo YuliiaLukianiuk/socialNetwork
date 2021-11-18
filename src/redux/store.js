@@ -37,11 +37,11 @@ let store = {
     _callSubscriber() {
         console.log("state  changed");
     },
-    updateNewPostText(newText) {
-        debugger
-         this._state.profilePage.newPostText = newText;
-         this._callSubscriber(this._state);
-         },
+    // updateNewPostText(newText) {
+    //     debugger
+    //      this._state.profilePage.newPostText = newText;
+    //      this._callSubscriber(this._state);
+    //      },
     subscribe(observer) {
         this._callSubscriber = observer;
     },
