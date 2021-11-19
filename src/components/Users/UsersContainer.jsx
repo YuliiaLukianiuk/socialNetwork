@@ -10,11 +10,13 @@ import {
 
 import Users from "./Users";
 import Preloader from "../common/Preloader/preloader";
+import {AuthRedirect} from "../../hoc/AuthRedirect";
+import {compose} from "redux";
 
 
 
 
-class UsersContainer extends React.Component {
+ class UsersContainer extends React.Component {
 
     componentDidMount() {
       this.props.getUsers(this.props.currentPage, this.props.pageSize);
@@ -54,14 +56,16 @@ let mapStateToProps = (state) => {
     }
 }
 
-
-
-
-export default connect(mapStateToProps, {
-        follow,
-        unfollow,
-        setCurrentPage,
-        toggleFollowingProgress,
+export default compose(
+  AuthRedirect,
+  connect(mapStateToProps, {
+  follow,
+  unfollow,
+  setCurrentPage,
+  toggleFollowingProgress,
   //thunk
-  getUsers:  getUsersThunkCreator
-}) (UsersContainer);
+  getUsers:  getUsersThunkCreator}),
+)(UsersContainer)
+
+
+
