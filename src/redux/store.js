@@ -8,7 +8,7 @@ let store = {
                 {id: 1, message: "Hi, how are you?", likesCount: "25"},
                 {id: 2, message: "It's my first post", likesCount: "2"},
             ],
-            newPostText: "Yuliia Hello",
+            // newPostText: "Yuliia Hello",
         },
         messagePage: {
             dialogData: [
