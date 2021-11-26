@@ -77,7 +77,7 @@ export const followSuccess = (userId) => ({
 });
 export const unfollowSuccess = (userId) => ({
     type: UNFOLLOW,
-    userId,
+    userId
 });
 export const setUsers = (users) => ({
     type: SET_USERS,
@@ -101,11 +101,12 @@ export const toggleFollowingProgress = (isFetching, userId) => ({
     userId
 });
 //thunk
-export const  getUsersThunkCreator = (currentPage, pageSize) => {
+export const  getUsersThunkCreator = (page, pageSize) => {
     return (dispatch) => {
         dispatch(toggleIsFetching( true));
+        dispatch(setCurrentPage( page));
 
-        usersAPI.getUsers(currentPage, pageSize)
+        usersAPI.getUsers(page, pageSize)
           .then(data => {
               dispatch(toggleIsFetching( false));
               dispatch(setUsers(data.items));
