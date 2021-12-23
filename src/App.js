@@ -1,9 +1,7 @@
 import React, {Profiler} from "react";
 import "./App.css";
-
 import Navbar from "./components/Navbar/Navbar";
-
-import {BrowserRouter, Route, withRouter} from "react-router-dom";
+import {Route, withRouter} from "react-router-dom";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import ProfileContainer from "./components/Profile/ProfileInfo/ProfileContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
@@ -21,39 +19,40 @@ class App extends React.Component {
 	}
 
 	render() {
-		if(!this.props.initialized) {
+		if (!this.props.initialized) {
 			return <Preloader/>
 		}
 
 		return (
-			<BrowserRouter>
-				<div className="app-wrapper">
-					<HeaderContainer/>
-					<Navbar/>
-					<div className='app-wrapper-content'>
-						<Route path='/dialogs'
-						       render={() => <DialogsContainer/>}/>
-						<Route path='/profile/:userId?'
-						       render={() => <ProfileContainer/>}/>
 
-						<Route path='/users'
-						       render={() => <UsersContainer/>}/>
-						<Route path='/login'
-						       render={() => <Login/>}/>
+			<div className="app-wrapper">
+				<HeaderContainer/>
+				<Navbar/>
+				<div className='app-wrapper-content'>
+					<Route path='/dialogs'
+					       render={() => <DialogsContainer/>}/>
+					<Route path='/profile/:userId?'
+					       render={() => <ProfileContainer/>}/>
 
-						{/*<Route path='/news'/>*/}
-						{/*<Route path='/music'/>*/}
-						{/*<Route path='/settings'/>*/}
+					<Route path='/users'
+					       render={() => <UsersContainer/>}/>
+					<Route path='/login'
+					       render={() => <Login/>}/>
 
-					</div>
+					{/*<Route path='/news'/>*/}
+					{/*<Route path='/music'/>*/}
+					{/*<Route path='/settings'/>*/}
+
 				</div>
-			</BrowserRouter>
+			</div>
+
 		);
 	}
 }
+
 const mapStateToProps = (state) => ({
 	initialized: state.app.initialized
 })
 export default compose(
 	withRouter,
-	connect(mapStateToProps, {initializeApp})) (App);
+	connect(mapStateToProps, {initializeApp}))(App);

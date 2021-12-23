@@ -1,0 +1,10 @@
+
+.selectedPage {
+    font-weight:bold ;
+}
+.pageNumber:hover {
+    background-color: black;
+    color: white;
+    border-radius: 20%;
+}
+

@@ -21,26 +21,25 @@ const AddNewPostForm = (props) => {
 }
 const AddNewPostFormRedux = reduxForm({form:"ProfileAddNewPostForm"})(AddNewPostForm)
 
-const MyPosts = (props) => {
+const MyPosts = React.memo(props => {
 
   let postsElement =
-  props.posts.map( p => <Post message={p.message} likesCount={p.likesCount} />
+    props.posts.map(p => <Post message={p.message} likesCount={p.likesCount}/>
     );
-    let onAddPost = (values) => {
-       props.addPost(values.newPostText);
-
-    }
+  let onAddPost = (values) => {
+    props.addPost(values.newPostText);
+  }
 
 
   return (
     <div className={classes.postsBlock}>
-     <h3> My posts</h3>
+      <h3> My posts</h3>
       <AddNewPostFormRedux onSubmit={onAddPost}/>
       <div className={classes.posts}></div>
       {postsElement}
     </div>
   );
-};
+});
 
 
 export default MyPosts;
