@@ -10,7 +10,7 @@ let Users = ({currentPage, onPageChanged, totalUsersCount, pageSize, users, ...p
 			<div style={{textOverflow: 'ellipsis', overflow: 'hidden', height: 40}}>
 
 				<Pagination currentPage={currentPage} onPageChanged={onPageChanged}
-				            totalUsersCount={totalUsersCount} pageSize={pageSize}
+				            totalItemsCount={totalUsersCount} pageSize={pageSize}
 
 
 				/>
@@ -24,7 +24,7 @@ let Users = ({currentPage, onPageChanged, totalUsersCount, pageSize, users, ...p
 
 				/>)
 			}
-			}
+
 		</div>)
 
 
